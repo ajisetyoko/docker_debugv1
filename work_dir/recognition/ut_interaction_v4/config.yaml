@@ -1,0 +1,51 @@
+# command line: main.py recognition -c config/ut_interaction/train.yaml
+
+base_lr: 0.02
+batch_size: 20
+config: config/ut_interaction/train.yaml
+debug: false
+device:
+- 0
+eval_interval: 1
+feeder: feeder.feeder_kinetics.Feeder_kinetics
+ignore_weights: []
+log_interval: 100
+model: net.st_gcn.Model
+model_args:
+    dropout: 0.2
+    edge_importance_weighting: true
+    graph_args:
+        layout: openpose
+        strategy: spatial
+    in_channels: 3
+    num_class: 6
+nesterov: true
+num_epoch: 150
+num_worker: 4
+optimizer: SGD
+pavi_log: false
+phase: train
+print_log: true
+save_interval: 2
+save_log: true
+save_result: false
+show_topk:
+- 1
+- 5
+start_epoch: 0
+step:
+- 100
+test_batch_size: 20
+test_feeder_args:
+    data_path: ./data/ut_npy/val_data.npy
+    label_path: ./data/ut_npy/val_label.pkl
+train_feeder_args:
+    data_path: ./data/ut_npy/train_data.npy
+    label_path: ./data/ut_npy/train_label.pkl
+    random_choose: false
+    random_move: false
+    window_size: 170
+use_gpu: true
+weight_decay: 0.0001
+weights: []
+work_dir: ./work_dir/recognition/ut_interaction_v4

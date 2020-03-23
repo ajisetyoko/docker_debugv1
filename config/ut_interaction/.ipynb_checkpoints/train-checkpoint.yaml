@@ -1,0 +1,44 @@
+# @Author: ajisetyoko <simslab-cs>
+# @Date:   2020-01-13T13:35:47+08:00
+# @Email:  aji.setyoko.second@gmail.com
+# @Last modified by:   simslab-cs
+# @Last modified time: 2020-03-03T15:18:52+08:00
+
+
+
+work_dir: ./work_dir/recognition/sbu
+
+# feeder
+# feeder: feeder.feeder.Feeder_kinetics
+train_feeder_args:
+  random_choose: False
+  random_move: True
+  window_size: 150
+  data_path: ./data/SBU/average_data/train_data.npy
+  label_path: ./data/SBU/average_data/train_label.pkl
+test_feeder_args:
+  data_path: ./data/SBU/average_data/val_data.npy
+  label_path: ./data/SBU/average_data/val_label.pkl
+
+# model
+model: net.st_gcn.Model
+model_args:
+  in_channels: 3
+  num_class: 9
+  dropout: 0.5
+  edge_importance_weighting: True
+  graph_args:
+    layout: 'sbu'
+    strategy: 'pam'
+
+#optim
+weight_decay: 0.001
+base_lr: 0.01
+step: [10, 50]
+
+# training
+eval_interval: 1
+device: [0]
+batch_size: 20
+test_batch_size: 20
+num_epoch: 60
