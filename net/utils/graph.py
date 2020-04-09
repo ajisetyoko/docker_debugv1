@@ -67,6 +67,44 @@ class Graph():
             neighbor_link = [(i - 1, j - 1) for (i, j) in neighbor_1base]
             self.edge = self_link + neighbor_link
             self.center = 21 - 1
+        elif layout == 'sign_lang':
+            self.num_node = 137
+            self_link    = [(i, i) for i in range(self.num_node)]
+            #Face _original index
+            outer_link   = [(i,i+1) for i in range(16)] #1
+            mouth1_link  = [(i,i+1) for i in range(48,59)] + [(59,48)] #2
+            mouth2_link  = [(i,i+1) for i in range(60,67)] + [(67,60)] #3
+            mstache_link = [(i,i+1) for i in range(31,35)] #4
+            nose_link    = [(27,28),(28,29),(29,30)] #5
+            eyebrw_link1 = [(i,i+1) for i in range(17,21)] #6
+            eyebrw_link2 = [(i,i+1) for i in range(22,26)] #7
+            eye_link1    = [(i,i+1) for i in range(36,41)] + [(41,36)] #8
+            eye_link2    = [(i,i+1) for i in range(42,47)] + [(47,42)] #9
+            #Hand _original index
+            thumb_link   = [(0,1),(1,2),(2,3),(3,4)]
+            index_link   = [(0,5),(5,6),(6,7),(7,8)]
+            midle_link   = [(0,9),(9,10),(10,11),(11,12)]
+            ring_link    = [(0,13),(13,14),(14,15),(15,16)]
+            litle_link   = [(0,17),(17,18),(18,19),(19,20)]
+            #Face and hand real representation
+            face_link_ori = outer_link + mouth1_link + mouth2_link + mstache_link + nose_link + eyebrw_link1 + eyebrw_link2 + eye_link1 + eye_link2
+            hand_right_ori= thumb_link + index_link + midle_link + ring_link + litle_link
+            hand_left_ori = thumb_link + index_link + midle_link + ring_link + litle_link
+            face_link  = [(i+25,j+25) for (i,j) in face_link_ori]
+            hand_left  = [(i+95,j+95) for (i,j) in hand_left_ori]
+            hand_right = [(i+116,j+116) for (i,j) in hand_right_ori]
+            #Pose Body link
+            neighbor_1base = [(1, 2), (2, 21), (3, 21), (4, 3), (5, 21),
+                              (6, 5), (7, 6), (8, 7), (9, 21), (10, 9),
+                              (11, 10), (12, 11), (13, 1), (14, 13), (15, 14),
+                              (16, 15), (17, 1), (18, 17), (19, 18), (20, 19),
+                              (22, 23), (23, 8), (24, 25), (25, 12)]
+            neighbor_link = [(i - 1, j - 1) for (i, j) in neighbor_1base]
+            # face_link     = [(i,i) for i in range(70)]
+            # self.edge = face_link_ori + face_link # Train Face only
+            self.edge = self_link + neighbor_link + face_link + hand_left + hand_right
+            self.center = 30 # For Face
+            # self.center = 0
         elif layout == 'ntu-rgb+d2':
             self.num_node = 25
             self_link = [(i, i) for i in range(self.num_node)]
