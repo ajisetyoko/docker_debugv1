@@ -1,1 +1,1 @@
-!wget -r http://140.118.1.134:7777/training_file/ -R index.html index.html.tmp -np -nH --cut-dir=1 
+wget -r http://140.118.1.134:7777/training_file/ -R index.html index.html.tmp -np -nH --cut-dir=1 
