@@ -56,6 +56,23 @@ class Graph():
                              (0, 1), (15, 0), (14, 0), (17, 15), (16, 14)]
             self.edge = self_link + neighbor_link
             self.center = 1
+
+        elif layout == 'sign_lang_handbody':
+            self.num_node = 49
+            thumb_link   = [(0,1),(1,2),(2,3),(3,4)]
+            index_link   = [(0,5),(5,6),(6,7),(7,8)]
+            midle_link   = [(0,9),(9,10),(10,11),(11,12)]
+            ring_link    = [(0,13),(13,14),(14,15),(15,16)]
+            litle_link   = [(0,17),(17,18),(18,19),(19,20)]
+            hand_right_ori  = thumb_link + index_link + midle_link + ring_link + litle_link
+            hand_left_ori   = thumb_link + index_link + midle_link + ring_link + litle_link
+            body_connection = [(0,1),(1,2),(2,3),(0,4),(4,5),(5,6)]
+            hand_left  = [(i+7,j+7) for (i,j) in hand_left_ori]
+            hand_right = [(i+27,j+27) for (i,j) in hand_right_ori]
+            self_link  = [(i,i) for i in range(self.num_node)]
+            self.edge  = self_link + body_connection + hand_left + hand_right
+            self.center= 0 
+            
         elif layout == 'sign_lang_body':
             self.num_node = 15
             self_link = [(i,i) for i in range(self.num_node)]
