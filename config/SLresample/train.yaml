@@ -1,4 +1,4 @@
-work_dir: ./work_dir/recognition/sl2_resample_1
+work_dir: ./work_dir/recognition/sl2_resample_handbody
 # feeder
 feeder: feeder.feeder_kinetics.Feeder_kinetics
 train_feeder_args:
