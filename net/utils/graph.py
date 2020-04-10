@@ -56,6 +56,13 @@ class Graph():
                              (0, 1), (15, 0), (14, 0), (17, 15), (16, 14)]
             self.edge = self_link + neighbor_link
             self.center = 1
+        elif layout == 'sign_lang_body':
+            self.num_node = 15
+            self_link = [(i,i) for i in range(self.num_node)]
+            neighbor_link = [(0,1),(1,2),(2,3),(3,4),(1,5),(5,6),(6,7),
+                            (1,8),(8,9),(9,10),(0,11),(0,12),(11,13),(12,14)]
+            self.edge = self_link+neighbor_link 
+            self.center = 0
         elif layout == 'ntu-rgb+d':
             self.num_node = 25
             self_link = [(i, i) for i in range(self.num_node)]

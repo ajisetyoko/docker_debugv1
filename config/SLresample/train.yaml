@@ -19,7 +19,7 @@ model_args:
   dropout: 0.1
   edge_importance_weighting: True
   graph_args:
-    layout: 'sign_lang'
+    layout: 'sign_lang_body'
     strategy: 'spatial'
 
 #optim
